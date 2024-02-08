@@ -5,8 +5,11 @@ class Category:
     def __init__(self, name: str, description: str):
         self.name = name
         self.description = description
-        self.products = []
+        self.__products = []
         Category.total_categories += 1
+
+    def get_product(self):
+        return self.__products
 
 
 class Product:
@@ -18,12 +21,11 @@ class Product:
         Category.total_unique_products += 1
 
 
-category1 = Category("Electronics", "Electronics products")
-product1 = Product("Phone", "Smartphone", 1000, 10)
-
 if __name__ == "__main__":
-    category1 = Category("Электроника", "Продукты электроники")
-    product1 = Product("Телефон", "Смартфон", 1000, 10)
+    category1 = Category("Electronics", "Electronics products")
+    product1 = Product("Phone", "Smartphone", 1000, 10)
 
-print(category1.name)  # Вывод: Электроника
-print(product1.quantity)  # Вывод: 10
+    products = ["Товар 1", "Товар 2", "Товар 3"]
+    category = Category("Категория", "Описание", products)
+
+print(category.get_products())  # Выводит: ["Товар 1", "Товар 2", "Товар 3"]
