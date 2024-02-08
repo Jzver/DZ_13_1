@@ -21,5 +21,9 @@ class Product:
 category1 = Category("Electronics", "Electronics products")
 product1 = Product("Phone", "Smartphone", 1000, 10)
 
+if __name__ == "__main__":
+    category1 = Category("Электроника", "Продукты электроники")
+    product1 = Product("Телефон", "Смартфон", 1000, 10)
+
 print(category1.name)  # Вывод: Электроника
 print(product1.quantity)  # Вывод: 10
