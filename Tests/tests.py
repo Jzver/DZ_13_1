@@ -1,24 +1,27 @@
-from main import Category, Product  # Replace "your_module" with the actual module name
+import pytest
+from src.main import Category, Product
 
 
-def test_category_initialization():
-    category = Category("Electronics", "Electronics products")
-    assert category.name == "Electronics"
-    assert category.description == "Electronics products"
-    assert category.products == []
-    assert Category.total_categories == 2
+@pytest.fixture
+def some_category():
+    return Category('home_apl', 'some goods for home', ['soap', 'spoon', 'knife', 'spoon', 'brush'])
 
 
-def test_product_initialization():
-    product1 = Product("Phone", "Smartphone", 1000, 10)
-    assert product1.name == "Phone"
-    assert product1.description == "Smartphone"
-    assert product1.price == 1000
-    assert product1.quantity == 10
+def test_init(some_category):
+    assert some_category.title == 'home_apl'
+    assert some_category.description == 'some goods for home'
 
 
-def test_count_categories():
-    assert Category.total_categories == 2
+some_product = Product('soap', 'soap for hands', 250, 15)
 
-def test_count_total_unique_products():
-    assert Category.total_unique_products == 2
+
+@pytest.fixture
+def some_product():
+    return Product('soap', 'soap for hands', 250, 15)
+
+
+def test_init_product(some_product):
+    assert some_product.title == 'soap'
+    assert some_product.description == 'soap for hands'
+    assert some_product.price == 250
+    assert some_product.quantity == 15
