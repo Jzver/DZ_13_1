@@ -15,12 +15,12 @@ class Category:
         Category.unique += len(set(self.__goods))
 
     @property
-    def goods(self):
+    def get_goods(self):
         """ Return title, price and quantity of every product"""
         for good in self.__goods:
             return f'{good.title}, {good.price} руб. Остаток: {good.quantity} шт.'
 
-    @goods.setter
+    @get_goods.setter
     def add_good(self, good):
         """ Add product in list """
         self.__goods.append(good)
