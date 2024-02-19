@@ -19,7 +19,7 @@ class Category:
         """ Return title, price and quantity of every product"""
         list_goods = []
         for good in self.__goods:
-            list_goods.append(f'str({good.title}), int({good.price}) руб. Остаток: {good.quantity} шт.')
+            list_goods.append(f'str({good.title}), int({good.price}) руб. Quantity of product: {good.quantity} pcs.')
         return list_goods
 
     @get_goods.setter
