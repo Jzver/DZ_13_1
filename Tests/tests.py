@@ -22,3 +22,11 @@ def test_init_product(some_product):
     assert some_product.description == 'soap for hands'
     assert some_product.price == 250
     assert some_product.quantity == 15
+
+
+def test_str(some_category):
+    assert str(some_category) == 'home_apl, quantity of products: 5 pcs.'
+
+
+def test_len(some_category):
+    assert len(some_category) == 5
