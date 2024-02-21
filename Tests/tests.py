@@ -12,9 +12,6 @@ def test_init(some_category):
     assert some_category.description == 'some goods for home'
 
 
-some_product = Product('soap', 'soap for hands', 250, 15)
-
-
 @pytest.fixture
 def some_product():
     return Product('soap', 'soap for hands', 250, 15)
