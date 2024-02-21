@@ -15,14 +15,12 @@ class Category:
         Category.unique += len(set(self.__goods))
 
     @property
-    def get_goods(self):
+    def goods(self):
         """ Return title, price and quantity of every product"""
-        list_goods = []
         for good in self.__goods:
-            list_goods.append(f'str({good.title}), int({good.price}) руб. Quantity of product: {good.quantity} pcs.')
-        return list_goods
+            return str(Product)
 
-    @get_goods.setter
+    @ goods.setter
     def add_good(self, good):
         """ Add product in list """
         self.__goods.append(good)
@@ -64,7 +62,6 @@ class Product:
             unswer = input('New price is higher than old price. Confirm price change: enter yes(y) or no(n).')
             if unswer == 'y' or unswer == 'yes':
                 self.__price = price
-        elif price > 0:
-            self.__price = price
-        else:
-            print('Incorrect price')
+
+    def __str__(self):
+        return f'{self.title}, {self.__price}. Remaining amount: {self.quantity} pcs.'
