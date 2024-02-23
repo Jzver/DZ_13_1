@@ -23,7 +23,10 @@ class Category:
     @goods.setter
     def add_good(self, good):
         """ Add product in list """
-        self.__goods.append(good)
+        if isinstance(good, Product):
+            self.__goods.append(good)
+        else:
+            raise TypeError
 
     def __str__(self):
         return f'{self.title}, quantity of products: {len(self)} pcs.'
