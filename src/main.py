@@ -20,7 +20,7 @@ class Category:
         for good in self.__goods:
             return str(Product)
 
-    @ goods.setter
+    @goods.setter
     def add_good(self, good):
         """ Add product in list """
         self.__goods.append(good)
@@ -65,3 +65,7 @@ class Product:
 
     def __str__(self):
         return f'{self.title}, {self.__price}. Remaining amount: {self.quantity} pcs.'
+
+    def __add__(self, other):
+        summ_ = self.__price * self.quantity + other.__price * other.quantity
+        return summ_
