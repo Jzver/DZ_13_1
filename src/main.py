@@ -67,5 +67,5 @@ class Product:
         return f'{self.title}, {self.__price}. Remaining amount: {self.quantity} pcs.'
 
     def __add__(self, other):
-        summ_ = self.price * self.quantity + other.__price * other.quantity
+        summ_ = self.price * self.quantity + other.price * other.quantity
         return summ_
