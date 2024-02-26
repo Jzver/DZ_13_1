@@ -17,16 +17,21 @@ class Category:
     @property
     def goods(self):
         """ Return title, price and quantity of every product"""
+        list_goods = []
         for good in self.__goods:
-            return str(Product)
+            list_goods.append(str(good))
+        return list_goods
 
     @goods.setter
     def add_good(self, good):
         """ Add product in list """
-        self.__goods.append(good)
+        if isinstance(good, Product):
+            self.__goods.append(good)
+        else:
+            raise TypeError
 
     def __str__(self):
-        return f'{self.title}, quantity of products: {len(self)} pcs.'
+        return f'{self.title}, количество продуктов: {len(self)} шт.'
 
     def __len__(self):
         self.length = len(self.__goods)
@@ -67,5 +72,4 @@ class Product:
         return f'{self.title}, {self.__price}. Remaining amount: {self.quantity} pcs.'
 
     def __add__(self, other):
-        summ_ = self.price * self.quantity + other.price * other.quantity
-        return summ_
+
