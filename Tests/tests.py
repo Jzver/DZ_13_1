@@ -3,30 +3,30 @@ from src.main import Category, Product
 
 
 @pytest.fixture
-def some_category():
-    return Category('home_apl', 'some goods for home', ['soap', 'spoon', 'knife', 'spoon', 'brush'])
-
-
-def test_init(some_category):
-    assert some_category.title == 'home_apl'
-    assert some_category.description == 'some goods for home'
+def some_product():
+    return Product('Soap', 'soap for hands', 50, 15, 'color')
 
 
 @pytest.fixture
-def some_product():
-    return Product('soap', 'soap for hands', 250, 15)
+def some_product_1():
+    return Product('Spoon', 'spoon for soup', 120, 6, 'color')
 
 
-def test_init_product(some_product):
-    assert some_product.title == 'soap'
+def test_init(some_product):
+    assert some_product.title == 'Soap'
     assert some_product.description == 'soap for hands'
-    assert some_product.price == 250
+    assert some_product.get_price() == 50
     assert some_product.quantity == 15
+    assert some_product.color == 'color'
 
 
-def test_str(some_category):
-    assert str(some_category) == 'home_apl, quantity of products: 5 pcs.'
+def test_create_product():
+    assert isinstance(Product.create_product('Soap'), Product)
 
 
-def test_len(some_category):
-    assert len(some_category) == 5
+def test_str(some_product):
+    assert str(some_product) == 'Soap, 50руб. Остаток: 15 шт.'
+
+
+def test_add(some_product, some_product_1):
+    assert some_product + some_product_1 == 1470

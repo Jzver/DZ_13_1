@@ -38,7 +38,10 @@ class Category:
         return self.length
 
 
-class Product:
+from mix_class import MixingLog
+
+
+class Product(MixingLog, SomeProduct):
     title: str
     description: str
     price: float
@@ -51,7 +54,7 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def create_product(cls, title, description, price, quantity):
+    def create_product(cls):
         """ Create and return new product """
         new_product = cls(title, description, price, quantity)
         return new_product
