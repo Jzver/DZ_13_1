@@ -1,3 +1,6 @@
+from mix_class import MixingLog
+from abc_class import SomeProduct
+
 class Category:
     title: str
     description: str
@@ -16,7 +19,7 @@ class Category:
 
     @property
     def goods(self):
-        """ Return title, price and quantity of every product"""
+        """Возвращает название, цену и количество каждого товара"""
         list_goods = []
         for good in self.__goods:
             list_goods.append(str(good))
@@ -24,7 +27,7 @@ class Category:
 
     @goods.setter
     def add_good(self, good):
-        """ Add product in list """
+        """Добавляет товар в список"""
         if isinstance(good, Product):
             self.__goods.append(good)
         else:
@@ -38,7 +41,8 @@ class Category:
         return self.length
 
 
-from mix_class import MixingLog
+
+
 
 
 class Product(MixingLog, SomeProduct):
@@ -55,7 +59,7 @@ class Product(MixingLog, SomeProduct):
 
     @classmethod
     def create_product(cls):
-        """ Create and return new product """
+        """Создает и возвращает новый продукт"""
         new_product = cls(title, description, price, quantity)
         return new_product
 
@@ -65,9 +69,9 @@ class Product(MixingLog, SomeProduct):
 
     @price.setter
     def new_price(self, price):
-        """ Set new price """
+        """Устанавливает новую цену"""
         if self.__price > price:
-            unswer = input('New price is higher than old price. Confirm price change: enter yes(y) or no(n).')
+            input('New price is higher than old price. Confirm price change: enter yes(y) or no(n).')
             if unswer == 'y' or unswer == 'yes':
                 self.__price = price
 
