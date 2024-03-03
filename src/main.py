@@ -94,6 +94,3 @@ class Product(MixingLog, SomeProduct):
     def __str__(self):
         return f'{self.title}, {self.__price}руб. Остаток: {self.quantity} шт.'
 
-    def __add__(self, other):
-        summ_ = self.__price * self.quantity + other.__price * other.quantity
-        return summ_
