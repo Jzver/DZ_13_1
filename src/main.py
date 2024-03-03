@@ -1,4 +1,4 @@
-from mix_class import MixingLog
+from mixing_class import MixingLog
 from abc_class import SomeProduct
 
 
