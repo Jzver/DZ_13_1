@@ -1,32 +1,60 @@
 import pytest
+
+from src.mixing_class import MixingLog
+from src.abc_class import SomeProduct
 from src.main import Category, Product
 
 
+# Test class for Category
 @pytest.fixture
-def some_product():
-    return Product('Soap', 'soap for hands', 50, 15, 'color')
+def category_fixture():
+    goods = Product('product1', 'desc', 100, 5, 'blue'), Product('product2', 'desc', 200, 10, 'red')
+    cat = Category('Cat1', 'desc', goods)
+    return cat
 
 
+def test_category_init(category_fixture):
+    assert isinstance(category_fixture, Category)
+    assert category_fixture.title == 'Cat1'
+    assert category_fixture.description == 'desc'
+    assert len(category_fixture.goods) == 2
+
+
+def test_category_add_good(category_fixture):
+    with pytest.raises(ValueError):
+        category_fixture.add_good(Product('product3', 'desc', 300, 0, 'green'))
+    category_fixture.add_good(Product('product3', 'desc', 300, 5, 'green'))
+    assert len(category_fixture.goods) == 3
+
+
+def test_category_middle_price(category_fixture):
+    assert pytest.approx(category_fixture.middle_price(), 0.01) == 150.0
+
+
+# Test class for Product
 @pytest.fixture
-def some_product_1():
-    return Product('Spoon', 'spoon for soup', 120, 6, 'color')
+def product_fixture():
+    product = Product('prod1', 'desc', 200, 2, 'blue')
+    return product
 
 
-def test_init(some_product):
-    assert some_product.title == 'Soap'
-    assert some_product.description == 'soap for hands'
-    assert some_product.get_price() == 50
-    assert some_product.quantity == 15
-    assert some_product.color == 'color'
+def test_product_init(product_fixture):
+    assert isinstance(product_fixture, Product)
+    assert product_fixture.title == 'prod1'
+    assert product_fixture.description == 'desc'
+    assert product_fixture.price == 200
+    assert product_fixture.quantity == 2
+    assert product_fixture.color == 'blue'
 
 
-def test_create_product():
-    assert isinstance(Product.create_product('Soap'), Product)
+def test_product_set_price(product_fixture):
+    product_fixture.set_price(-1)
+    assert product_fixture.price == 200
+    product_fixture.set_price(300, interactive=False)
+    assert product_fixture.price == 300
 
 
-def test_str(some_product):
-    assert str(some_product) == 'Soap, 50руб. Остаток: 15 шт.'
-
-
-def test_add(some_product, some_product_1):
-    assert some_product + some_product_1 == 1470
+def test_product_add():
+    product1 = Product('prod1', 'desc', 200, 2, 'blue')
+    product2 = Product('prod2', 'desc', 300, 3, 'green')
+    assert product1 + product2 == (200 * 2 + 300 * 3)
