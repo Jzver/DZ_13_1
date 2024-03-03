@@ -1,8 +1,8 @@
 import pytest
 
-from mixing_class import MixingLog
-from abc_class import SomeProduct
-from main import Category, Product
+from src.mixing_class import MixingLog
+from src.abc_class import SomeProduct
+from src.main import Category, Product
 
 
 # Test class for Category
