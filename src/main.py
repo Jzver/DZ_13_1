@@ -30,11 +30,12 @@ class Category:
     def add_good(self, good):
         """ Add product in list """
         if isinstance(good, Product):
-            if good.quantity < 1:
+            if good.quantity == 0:
                 raise ValueError('Недопустимое для количества значение')
             self.__goods.append(good)
-        else:
-            raise TypeError
+            return self.__goods
+
+        raise TypeError
 
     def __str__(self):
         return f'{self.title}, количество продуктов: {len(self)} шт.'
@@ -43,11 +44,14 @@ class Category:
         self.length = len(self.__goods)
         return self.length
 
-    def middle_price(self, summ_of_prices=None):
-        for product in self.__goods:
-            summ_of_prices += product.get_price
+    def all_product(self):
+        return self.__product
+
+    def middle_price_product(self):
+
         try:
-            return summ_of_prices / len(self.__goods)
+            middle_price = [i.price for i in self.all_product()]
+            return summ(middle_price) / len(middle_price)
         except ZeroDivisionError:
             return 0
 
